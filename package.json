@@ -1,0 +1,28 @@
+{
+  "name": "game_hearthstone",
+  "version": "1.0.0",
+  "description": "Game HearthStone",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DDaneliuk/Game_HearthStone.git"
+  },
+  "keywords": [
+    "game"
+  ],
+  "author": "Denis Daneliuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DDaneliuk/Game_HearthStone/issues"
+  },
+  "homepage": "https://github.com/DDaneliuk/Game_HearthStone#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "nodemon": "^2.0.7"
+  }
+}
