@@ -1,0 +1,24 @@
+ <div class="container">
+    <div>
+    <a href="/" class="link-back">go Back</a>
+    <h2>Login</h2>
+    <div class="sign-form">
+        <form action="/login" method="POST"> 
+        <label>Your Email</label>
+        <input class="text-input" type="email" name="email" placeholder="Your Email">
+        <label>Your Password</label>
+        <input class="text-input"type="password" name="password" placeholder="Your Password">
+        <input class="btn" type="submit" value="Send">
+    </form>
+    </div>
+    {{#if message}}
+    <p class="message-error">{{message}}</p>
+    {{/if}}
+    {{#if successmessage}}
+    <div class="form-message-success">
+    <p class="message-success">{{successmessage}}</p>
+    <a href="/login"><button class="btn border-btn">Log in</button></a>
+    </div>
+    {{/if}}
+    </div>
+</div>

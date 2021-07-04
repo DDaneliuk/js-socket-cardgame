@@ -1,0 +1,32 @@
+<div class="container">
+    <div>
+    <a href="/" class="link-back">go Back</a>
+    <h2>Sign up</h2>
+    <div class="sign-form">
+        <form action="/signup" method="POST"> 
+        <label>Your Email</label>
+        <input class="text-input" type="email" name="email" placeholder="Your Email">
+        <div class="form-field-group">
+            <div>
+                <label>Your Password</label>
+            <input class="text-input"type="password" name="password" placeholder="Your Password">
+            </div>
+            <div>
+                <label>Confirm Password</label>
+            <input class="text-input"type="password" name="confirmpass" placeholder="Confirm password">
+            </div>      
+        </div>
+        <input class="btn" type="submit" value="Send">
+    </form>
+    </div>
+    {{#if message}}
+    <p class="message-error">{{message}}</p>
+    {{/if}}
+    {{#if successmessage}}
+    <div class="form-message-success">
+    <p class="message-success">{{successmessage}}</p>
+    <a href="/login"><button class="btn border-btn">Log in</button></a>
+    </div>
+    {{/if}}
+    </div>
+</div>
