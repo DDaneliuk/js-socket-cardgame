@@ -1,24 +1,38 @@
- <div class="container">
+<div class="container">
     <div>
-    <a href="/" class="link-back">go Back</a>
-    <h2>Login</h2>
-    <div class="sign-form">
-        <form action="/login" method="POST"> 
-        <label>Your Email</label>
-        <input class="text-input" type="email" name="email" placeholder="Your Email">
-        <label>Your Password</label>
-        <input class="text-input"type="password" name="password" placeholder="Your Password">
-        <input class="btn" type="submit" value="Send">
-    </form>
-    </div>
-    {{#if message}}
-    <p class="message-error">{{message}}</p>
-    {{/if}}
-    {{#if successmessage}}
-    <div class="form-message-success">
-    <p class="message-success">{{successmessage}}</p>
-    <a href="/login"><button class="btn border-btn">Log in</button></a>
-    </div>
-    {{/if}}
+        <a href="/" class="link-back">go Back</a>
+        <h2>Login</h2>
+        <div class="sign-form">
+            <form action="/login" method="POST">
+                <label>Your Email</label>
+                <input class="text-input" type="email" name="email" placeholder="Your Email">
+                <label>Your Password</label>
+                <input class="text-input" type="password" name="password" placeholder="Your Password">
+                <input class="btn" type="submit" value="Send">
+            </form>
+        </div>
+        {{#if message}}
+        <p class="message-error">{{message}}</p>
+        {{/if}}
+        {{#if successmessage}}
+        <div class="form-message-success">
+            <p class="message-success">{{successmessage}}</p>
+            <a href="/login"><button class="btn border-btn">Log in</button></a>
+        </div>
+        {{/if}}
     </div>
 </div>
+
+<script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+    integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript" charset="utf-8">
+    const socket = io.connect("127.0.0.1:3000");
+
+    socket.on("huy", msg => {
+        console.log("socekt server event data: ", msg)
+    })
+
+    socket.emit("d1", "d1 data");
+</script>
