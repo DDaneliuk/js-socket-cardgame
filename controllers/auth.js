@@ -40,9 +40,7 @@ exports.login = (req, res) => {
           message: `Sorry, your pass or email is wrong. Try again`,
         });
       } else {
-        return res.render("login", {
-          message: "Congracts, you are login in",
-        });
+        return res.redirect("gamepage");
       }
     });
   } else {
