@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const authController = require("../controllers/auth");
+const gameController = require("../controllers/game");
 
 router.get("/", (req, res) => {
   res.render("gamepage", {
@@ -8,6 +8,6 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", authController.login);
+router.post("/", gameController.startgame);
 
 module.exports = router;

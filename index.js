@@ -130,16 +130,16 @@ io.on("connection", async (socket) => {
         players: currentRoom.players,
       });
 
-      let isPizdanulos = false;
+      let isUnplayablePlayerFound = false;
 
       for (let [key, value] of currentRoom.players) {
         console.log("for, val: ", value);
         if (value.isUserReady === false) {
-          isPizdanulos = true;
+          isUnplayablePlayerFound = true;
           break;
         }
       }
-      if (isPizdanulos === false) {
+      if (isUnplayablePlayerFound === false) {
         io.to(localeGettedRid).emit("game-ready", localeGettedRid);
       }
     }
