@@ -49,32 +49,100 @@ const userAtRooms = new Map();
 
 io.on("connection", async (socket) => {
   const sid = socket.id;
-  const rid = generateRandomString(16);
+  const generatedRoomId = generateRandomString(16);
 
-  console.log("socket connected: ", sid);
+  console.log("socket connected: ", sid, " gen rid: ", generatedRoomId);
 
   // todo: socket.join(rid)
 
+  let isRoomFounded = false;
+
   if (socketRooms.size === 0 && userAtRooms.size === 0) {
-    console.log("create");
-    socketRooms.set(rid, {
+    socketRooms.set(generatedRoomId, {
       usersCount: 1,
       isRoomPlayable: false,
       players: new Map().set(sid, {
-        isUserReady: true,
+        isUserReady: false,
       }),
     });
 
-    userAtRooms.set(sid, rid);
+    userAtRooms.set(sid, generatedRoomId);
+
+    socket.join(generatedRoomId);
   } else {
-    console.log("for of");
+    let localeRid;
+
+    // searching for free room (where userCount is 1)
+    for (let [key, value] of socketRooms) {
+      if (value.usersCount === 1) {
+        localeRid = key;
+        isRoomFounded = true;
+
+        // add new player to socketRooms (list of socket rooms)
+        socketRooms.set(localeRid, {
+          usersCount: 2,
+          isRoomPlayable: false,
+          players: socketRooms.get(localeRid).players.set(sid, {
+            isUserReady: false,
+          }),
+        });
+
+        // add current socket to specific room
+        userAtRooms.set(sid, localeRid);
+
+        socket.join(localeRid);
+        break;
+      }
+    }
+  }
+  // if free room not found, we create new one and add current user (sid, socket) to this room
+  if (isRoomFounded === false) {
+    socketRooms.set(generatedRoomId, {
+      usersCount: 1,
+      isRoomPlayable: false,
+      players: new Map().set(sid, {
+        isUserReady: false,
+      }),
+    });
+
+    userAtRooms.set(sid, generatedRoomId);
+
+    socket.join(generatedRoomId);
   }
 
   console.log("(conect) socketRooms: ", socketRooms);
   console.log("(conect) userAtRooms: ", userAtRooms);
 
-  socket.on("user-ready", (msg) => {
-    console.log("d1 event, data: ", msg);
+  socket.on("user-ready", () => {
+    const localeGettedRid = userAtRooms.get(sid);
+    const currentRoom = socketRooms.get(localeGettedRid);
+
+    socketRooms.set(localeGettedRid, {
+      usersCount: currentRoom.usersCount,
+      isRoomPlayable: currentRoom.isRoomPlayable,
+      players: currentRoom.players.set(sid, { isUserReady: true }),
+    });
+
+    if (currentRoom.players.size === 2) {
+      socketRooms.set(localeGettedRid, {
+        usersCount: currentRoom.usersCount,
+        isRoomPlayable: true,
+        players: currentRoom.players,
+      });
+
+      let isPizdanulos = false;
+
+      for (let [key, value] of currentRoom.players) {
+        console.log("for, val: ", value);
+        if (value.isUserReady === false) {
+          isPizdanulos = true;
+          break;
+        }
+      }
+      if (isPizdanulos === false) {
+        io.to(localeGettedRid).emit("game-ready", localeGettedRid);
+      }
+    }
   });
 
   socket.on("disconnect", () => {
@@ -82,10 +150,13 @@ io.on("connection", async (socket) => {
 
     const rid = userAtRooms.get(socket.id);
 
-    // todo: socket.leave(rid)
-
     userAtRooms.delete(socket.id);
     socketRooms.delete(rid);
+
+    socket.leave(rid);
+
+    console.log("(disconnect) socketRooms: ", socketRooms);
+    console.log("(disconnect) userAtRooms: ", userAtRooms);
   });
 });
 
