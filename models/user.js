@@ -8,13 +8,11 @@ module.exports = {
             callback(err, result)
         })
     },
-    insertUser: async function(email, password, callback){
+    insertUser: async function(email, login, password, callback){
         let hashPass = await bcrypt.hash(password, 8);
         let sql = 'INSERT INTO users SET ?'
-        db.query(sql, {email: email, password: hashPass}, function(err, result){
+        db.query(sql, {email, login, password: hashPass}, function(err, result){
             callback(err, result)
         })
     },
-    
-
 }

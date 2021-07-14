@@ -2,12 +2,12 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
 exports.signup = (req, res) => {
-  const { email, password, confirmpass } = req.body;
+  const { email, login, password, confirmpass } = req.body;
   User.getUser(email, function (err, result) {
     if (err) {
       console.log(err);
     }
-    if (result.length > 0) {
+    if (result && result.length > 0) {
       return res.render("signup", {
         message: "That email is already in use",
       });
@@ -16,12 +16,12 @@ exports.signup = (req, res) => {
         message: "Wrong confirm pass. Try again",
       });
     }
-    User.insertUser(email, password, function (err, result) {
+    User.insertUser(email, login, password, function (err, result) {
       if (err) {
         console.log(err);
       } else {
         return res.render("signup", {
-          successmessage: "Congracts, you are sign up!",
+          successmessage: `Congrats ${login}, you have successfully signed up!`,
           signup: true,
         });
       }
@@ -35,9 +35,9 @@ exports.login = (req, res) => {
     User.getUser(email, async function (err, result) {
       if (err) console.log(err);
       console.log(result[0].password);
-      if (!result || !(await bcrypt.compare(password, result[0].password))) {
+      if ( !result || !bcrypt.compare(password, result[0].password) ) {
         return res.render("login", {
-          message: `Sorry, your pass or email is wrong. Try again`,
+          message: `Sorry, your password or email is incorrect. Please try again`,
         });
       } else {
         return res.redirect("gamepage");
