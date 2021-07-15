@@ -6,6 +6,7 @@ const homeRoutes = require("./routes/home");
 const signupRoutes = require("./routes/signup");
 const loginRoutes = require("./routes/login");
 const gamePageRoutes = require("./routes/gamepage");
+const cardsRoutes = require("./routes/cards");
 
 const app = express();
 const server = require("http").createServer(app);
@@ -27,6 +28,7 @@ app.use("/", homeRoutes);
 app.use("/signup", signupRoutes);
 app.use("/login", loginRoutes);
 app.use("/gamepage", gamePageRoutes);
+app.use("/cards", cardsRoutes);
 
 function generateRandomString(length) {
   let randomChars =

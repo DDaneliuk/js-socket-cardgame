@@ -1,0 +1,122 @@
+[{
+    "name":"Warrior Hasbro",
+    "damage":"40",
+    "cost":"70",
+    "health":"40",
+    "img":"../images/card1.jpg"
+},{
+    "name":"The Demon Seed",
+    "damage":"55",
+    "cost":"85",
+    "health":"60",
+    "img":"../images/card2.jpg"
+},{
+    "name":"Feast of Souls",
+    "damage":"45",
+    "cost":"75",
+    "health":"55",
+    "img":"../images/card3.jpg"
+},{
+    "name":"Felsaber",
+    "damage":"60",
+    "cost":"80",
+    "health":"30",
+    "img":"../images/card4.jpg"
+},{
+    "name":"Chaos Nova",
+    "damage":"20",
+    "cost":"30",
+    "health":"35",
+    "img":"../images/card5.jpg"
+},{
+    "name":"Vengeful Spirit",
+    "damage":"80",
+    "cost":"75",
+    "health":"15",
+    "img":"../images/card6.jpg"
+},{
+    "name":"Fury",
+    "damage":"15",
+    "cost":"65",
+    "health":"75",
+    "img":"../images/card7.jpg"
+},{
+    "name":"RazorBoar",
+    "damage":"50",
+    "cost":"60",
+    "health":"40",
+    "img":"../images/card8.jpg"
+},{
+    "name":"Vile Call",
+    "damage":"80",
+    "cost":"85",
+    "health":"20",
+    "img":"../images/card9.jpg"
+},{
+    "name":"Felrattler",
+    "damage":"15",
+    "cost":"20",
+    "health":"20",
+    "img":"../images/card10.jpg"
+},{
+    "name":"Twin Slice",
+    "damage":"35",
+    "cost":"25",
+    "health":"40",
+    "img":"../images/card11.jpg"
+},{
+    "name":"Feast of Soul",
+    "damage":"40",
+    "cost":"50",
+    "health":"35",
+    "img":"../images/card12.jpg"
+},{
+    "name":"Consume Magic",
+    "damage":"20",
+    "cost":"15",
+    "health":"40",
+    "img":"../images/card13.jpg"
+},{
+    "name":"Naga",
+    "damage":"20",
+    "cost":"10",
+    "health":"20",
+    "img":"../images/card14.jpg"
+},{
+    "name":"Spectral Sight",
+    "damage":"40",
+    "cost":"35",
+    "health":"40",
+    "img":"../images/card15.jpg"
+},{
+    "name":"Warlord",
+    "damage":"40",
+    "cost":"35",
+    "health":"40",
+    "img":"../images/card16.jpg"
+},{
+    "name":"Blur",
+    "damage":"45",
+    "cost":"40",
+    "health":"15",
+    "img":"../images/card17.jpg"
+},{
+    "name":"Blade",
+    "damage":"50",
+    "cost":"30",
+    "health":"15",
+    "img":"../images/card18.jpg"
+},{
+    "name":"Split",
+    "damage":"15",
+    "cost":"10",
+    "health":"10",
+    "img":"../images/card19.jpg"
+},{
+    "name":"Demon",
+    "damage":"50",
+    "cost":"70",
+    "health":"50",
+    "img":"../images/card20.jpg"
+}
+]
