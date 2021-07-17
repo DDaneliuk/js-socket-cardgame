@@ -1,0 +1,82 @@
+.cards-fisrt-user {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.view-first-user {
+  height: 50vh;
+  border-bottom: 1px solid;
+  display: flex;
+  justify-content: space-between;
+}
+.view-second-user {
+  height: 50vh;
+  border-top: 1px solid;
+  display: flex;
+  justify-content: space-between;
+}
+.cards-second-user {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.user-info {
+  height: 100%;
+  width: 80px;
+  margin: 0 60px;
+  display: flex;
+  align-items: center;
+}
+.game-controllers {
+  width: 100%;
+  height: 0px;
+  position: relative;
+}
+.controller {
+  width: 300px;
+  border: 1px solid #1e5fff;
+  padding: 30px;
+  position: absolute;
+  right: 0;
+  top: -55px;
+  background: #242424;
+}
+.picked-card {
+  position: relative;
+}
+.place-card {
+  background: #242424;
+  border: 1px solid #1e5fff;
+  padding: 30px;
+  width: 170px;
+  height: 240px;
+  position: absolute;
+}
+.first {
+  bottom: -50px;
+  right: 5px;
+}
+.second {
+  top: -50px;
+  left: 5px;
+}
+
+.user-health {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-health h3 {
+  margin: 0;
+}
+.user-icon {
+  width: 30px;
+}

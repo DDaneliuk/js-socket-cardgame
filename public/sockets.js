@@ -6,5 +6,6 @@ socket.on("game-ready", async (rid) => {
 });
 
 readyBtn.addEventListener("click", () => {
+  console.log("BTN");
   socket.emit("user-ready");
 });

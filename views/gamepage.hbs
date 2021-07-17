@@ -1,3 +1,4 @@
+{{#if readyState}}
 <div class="container">
     <div>
     <h2>Are you ready? For start game press "Ready"</h2>
@@ -5,9 +6,194 @@
     <button class="btn" type="submit" id="test">Ready</button>
     </div>
 </div>
-{{#if message}}
-        <p>{{message}}</p>
 {{/if}}
+
+{{#if gameTemplate}}
+    <div class="gameboard">
+        <div class="view-first-user">
+            <div class="user-info">
+                <div>
+                    <p>User 1</p>
+                    <h3>Devid</h3>
+                </div>
+            </div>
+            <div class="cards-fisrt-user">
+                <div class="card">
+                    <h3 class="card-name">Warrior Hasbro</h3>
+                    <div>
+                        <img class="card-img" src="../images/card1.jpg"> 
+                    </div>
+        
+                    <div class="card-info">
+                        <div class="card-opt">
+                <img class="card-icon" src="../images/dagger.svg">
+                <p class="damage">40</p>
+            </div>
+            
+            <p class="card-opt money">$70</p>
+
+            <div class="card-opt ">
+                <img class="card-icon" src="../images/heart.svg">
+                <p class="health">40</p>
+            </div>
+        </div>
+                </div>
+                <div class="card">
+        <h3 class="card-name">The Demon Seed</h3>
+        <div>
+            <img class="card-img" src="../images/card2.jpg"> 
+        </div>
+        
+        <div class="card-info">
+            <div class="card-opt">
+                <img class="card-icon" src="../images/dagger.svg">
+                <p class="damage">55</p>
+            </div>
+            
+            <p class="card-opt money">$85</p>
+
+            <div class="card-opt ">
+                <img class="card-icon" src="../images/heart.svg">
+                <p class="health">60</p>
+            </div>
+        </div>
+                </div>
+                <div class="card">
+        <h3 class="card-name">Feast of Souls</h3>
+        <div>
+            <img class="card-img" src="../images/card3.jpg"> 
+        </div>
+        
+        <div class="card-info">
+            <div class="card-opt">
+                <img class="card-icon" src="../images/dagger.svg">
+                <p class="damage">45</p>
+            </div>
+            
+            <p class="card-opt money">$75</p>
+
+            <div class="card-opt ">
+                <img class="card-icon" src="../images/heart.svg">
+                <p class="health">55</p>
+            </div>
+        </div>
+                </div>
+            </div>
+            <div class="picked-card ">
+                <div class="place-card first">
+                    <p>Place your card</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <div>
+                    <p>Money:</p>
+                    <h3 class="money">$ 125</h3>
+                    <p>Health:</p>
+                    <div class="user-health">
+                    <img  class="user-icon" src="../images/heart.svg">
+                    <h3 class="health">100</h3>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="game-controllers">
+            <div class="controller">
+                <p>Turn</p>
+                <h3>Time left: 30s</h3>
+            </div>
+        </div>
+        <div class="view-second-user">
+            <div class="user-info">
+                <div>
+                    <p>User 2</p>
+                    <h3>Mike</h3>
+                </div>
+            </div>
+            <div class="cards-second-user">
+                <div class="card">
+                    <h3 class="card-name">Warrior Hasbro</h3>
+                    <div>
+                        <img class="card-img" src="../images/card1.jpg"> 
+                    </div>
+        
+                    <div class="card-info">
+                        <div class="card-opt">
+                <img class="card-icon" src="../images/dagger.svg">
+                <p class="damage">40</p>
+            </div>
+            
+            <p class="card-opt money">$70</p>
+
+            <div class="card-opt ">
+                <img class="card-icon" src="../images/heart.svg">
+                <p class="health">40</p>
+            </div>
+        </div>
+                </div>
+                <div class="card">
+        <h3 class="card-name">The Demon Seed</h3>
+        <div>
+            <img class="card-img" src="../images/card2.jpg"> 
+        </div>
+        
+        <div class="card-info">
+            <div class="card-opt">
+                <img class="card-icon" src="../images/dagger.svg">
+                <p class="damage">55</p>
+            </div>
+            
+            <p class="card-opt money">$85</p>
+
+            <div class="card-opt ">
+                <img class="card-icon" src="../images/heart.svg">
+                <p class="health">60</p>
+            </div>
+        </div>
+                </div>
+                <div class="card">
+        <h3 class="card-name">Feast of Souls</h3>
+        <div>
+            <img class="card-img" src="../images/card3.jpg"> 
+        </div>
+        
+        <div class="card-info">
+            <div class="card-opt">
+                <img class="card-icon" src="../images/dagger.svg">
+                <p class="damage">45</p>
+            </div>
+            
+            <p class="card-opt money">$75</p>
+
+            <div class="card-opt ">
+                <img class="card-icon" src="../images/heart.svg">
+                <p class="health">55</p>
+            </div>
+        </div>
+                </div>
+            </div>
+            <div class="picked-card second">
+                <div class="place-card">
+                    <p>Place your card</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <div>
+                    <p>Money:</p>
+                    <h3 class="money">$ 125</h3>
+                    <p>Health:</p>
+                    <div class="user-health">
+                    <img  class="user-icon" src="../images/heart.svg">
+                    <h3 class="health">100</h3>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{{/if}}
+
+
 
 <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
     integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous">
