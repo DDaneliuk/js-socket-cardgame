@@ -111,10 +111,11 @@
                 </div>
             </div>
             <div class="cards-second-user">
-                <div class="card">
+                <div class="place">
+                <div class="card" id="test-drag" draggable="true">
                     <h3 class="card-name">Warrior Hasbro</h3>
                     <div>
-                        <img class="card-img" src="../images/card1.jpg"> 
+                        <img draggable="false" class="card-img" src="../images/card1.jpg"> 
                     </div>
         
                     <div class="card-info">
@@ -131,7 +132,8 @@
             </div>
         </div>
                 </div>
-                <div class="card">
+                </div>
+                <div class="card" draggable="true">
         <h3 class="card-name">The Demon Seed</h3>
         <div>
             <img class="card-img" src="../images/card2.jpg"> 
@@ -173,7 +175,7 @@
                 </div>
             </div>
             <div class="picked-card second">
-                <div class="place-card">
+                <div class="place-card place">
                     <p>Place your card</p>
                 </div>
             </div>
@@ -199,3 +201,4 @@
     integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous">
     </script>
 <script src="../../sockets.js"></script>
+<script src="../../game.js"></script>

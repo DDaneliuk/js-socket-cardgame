@@ -57,3 +57,12 @@
   /* transform: translateY(-15px); */
   height: 300px;
 }
+.hold-card {
+  border: 5px solid #1e5fff;
+}
+.hide-card {
+  display: none;
+}
+.hovered {
+  box-shadow: 0px 0px 20px 5px rgba(25, 81, 181, 0.48);
+}
