@@ -10,7 +10,12 @@ const cardsRoutes = require("./routes/cards");
 
 const app = express();
 const server = require("http").createServer(app);
-const io = require("socket.io")(server); // docs: https://socket.io/docs/v3/server-initialization/
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  }
+}); // docs: https://socket.io/docs/v3/server-initialization/
 
 const hbs = exphbs.create({
   defaultLayout: "main",
@@ -48,57 +53,37 @@ function generateRandomString(length) {
 
 const socketRooms = new Map();
 const userAtRooms = new Map();
+// added for easy search of available room
+const socketRoomIndex = []
 
 io.on("connection", async (socket) => {
   const sid = socket.id;
-  const generatedRoomId = generateRandomString(16);
 
-  console.log("socket connected: ", sid, " gen rid: ", generatedRoomId);
-
-  // todo: socket.join(rid)
-
-  let isRoomFounded = false;
-
-  if (socketRooms.size === 0 && userAtRooms.size === 0) {
-    socketRooms.set(generatedRoomId, {
-      usersCount: 1,
+  // searching for free room (where userCount is 1)
+  const readyToJoinRoomId = socketRoomIndex[0]
+  if(socketRooms.size && readyToJoinRoomId) {
+    // add new player to an available socketRoom
+    const currentRoom = socketRooms.get(readyToJoinRoomId);
+    socketRooms.set(readyToJoinRoomId, {
+      ...currentRoom,
+      usersCount: 2,
       isRoomPlayable: false,
-      players: new Map().set(sid, {
-        isUserReady: false,
-      }),
+    });
+    currentRoom.players.set(sid, {
+      isUserReady: false,
     });
 
-    userAtRooms.set(sid, generatedRoomId);
-
-    socket.join(generatedRoomId);
+    // add current socket to specific room
+    socket.join(readyToJoinRoomId);
+    // add current socket to specific room
+    userAtRooms.set(sid, readyToJoinRoomId);
+    // remove from array of available rooms
+    socketRoomIndex.shift();
   } else {
-    let localeRid;
-
-    // searching for free room (where userCount is 1)
-    for (let [key, value] of socketRooms) {
-      if (value.usersCount === 1) {
-        localeRid = key;
-        isRoomFounded = true;
-
-        // add new player to socketRooms (list of socket rooms)
-        socketRooms.set(localeRid, {
-          usersCount: 2,
-          isRoomPlayable: false,
-          players: socketRooms.get(localeRid).players.set(sid, {
-            isUserReady: false,
-          }),
-        });
-
-        // add current socket to specific room
-        userAtRooms.set(sid, localeRid);
-
-        socket.join(localeRid);
-        break;
-      }
-    }
-  }
-  // if free room not found, we create new one and add current user (sid, socket) to this room
-  if (isRoomFounded === false) {
+    // create new room
+    const generatedRoomId = generateRandomString(16);
+    console.log("socket connected: ", sid, " gen rid: ", generatedRoomId);
+    
     socketRooms.set(generatedRoomId, {
       usersCount: 1,
       isRoomPlayable: false,
@@ -106,56 +91,70 @@ io.on("connection", async (socket) => {
         isUserReady: false,
       }),
     });
-
-    userAtRooms.set(sid, generatedRoomId);
-
     socket.join(generatedRoomId);
+    // add current socket to specific room
+    userAtRooms.set(sid, generatedRoomId);
+    // add to array of available to join rooms
+    socketRoomIndex.push(generatedRoomId)
   }
-
   console.log("(conect) socketRooms: ", socketRooms);
   console.log("(conect) userAtRooms: ", userAtRooms);
-
+  
   socket.on("user-ready", () => {
-    const localeGettedRid = userAtRooms.get(sid);
-    const currentRoom = socketRooms.get(localeGettedRid);
+    console.log("user-ready emitted: ", sid)
+    // find which room a user have previously joined
+    const roomId = userAtRooms.get(sid);
+    const currentRoom = socketRooms.get(roomId);
 
-    socketRooms.set(localeGettedRid, {
-      usersCount: currentRoom.usersCount,
-      isRoomPlayable: currentRoom.isRoomPlayable,
-      players: currentRoom.players.set(sid, { isUserReady: true }),
-    });
+    const currentPlayer = currentRoom.players.get(sid);
+    // second player is the guy with diff sid in the room
+    const secondPlayerId = [...currentRoom.players.keys()].find(x => x !== sid);
+    const secondPlayer = currentRoom.players.get(secondPlayerId);
 
-    if (currentRoom.players.size === 2) {
-      socketRooms.set(localeGettedRid, {
-        usersCount: currentRoom.usersCount,
+    currentRoom.players.set(sid, {
+      ...currentPlayer,
+      isUserReady: true 
+    })
+
+    if (currentRoom.players.size === 2 && secondPlayer.isUserReady) {
+      // room is ready
+      socketRooms.set(roomId, {
+        ...currentRoom,
         isRoomPlayable: true,
-        players: currentRoom.players,
       });
 
-      let isUnplayablePlayerFound = false;
-
-      for (let [key, value] of currentRoom.players) {
-        console.log("for, val: ", value);
-        if (value.isUserReady === false) {
-          isUnplayablePlayerFound = true;
-          break;
-        }
-      }
-      if (isUnplayablePlayerFound === false) {
-        io.to(localeGettedRid).emit("game-ready", localeGettedRid);
-      }
+      io.to(roomId).emit("game-ready", roomId);
+      console.log("(game-ready) socketRooms: ", socketRooms);
     }
   });
 
   socket.on("disconnect", () => {
     console.log("socket disconnected, id: ", socket.id);
-
-    const rid = userAtRooms.get(socket.id);
-
+    const roomId = userAtRooms.get(socket.id);
+    const currentRoom = socketRooms.get(roomId)
     userAtRooms.delete(socket.id);
-    socketRooms.delete(rid);
+    
+    // only delete room if there are no users left
+    if(currentRoom && currentRoom.players && currentRoom.players.size > 1) {
+      currentRoom.players.delete(sid)
+      // room becomes unplayable
+      socketRooms.set(roomId, {
+        ...currentRoom,
+        usersCount: 1,
+        isRoomPlayable: false,
+      });
+      // and becomes available to join
+      socketRoomIndex.push(roomId)
+    } else {
+      socketRooms.delete(roomId);
+      // cleanup rooms available to join
+      const index = socketRoomIndex.indexOf(roomId);
+      if (index !== -1) {
+        socketRoomIndex.splice(index, 1);
+      }
+    }
 
-    socket.leave(rid);
+    socket.leave(roomId);
 
     console.log("(disconnect) socketRooms: ", socketRooms);
     console.log("(disconnect) userAtRooms: ", userAtRooms);
