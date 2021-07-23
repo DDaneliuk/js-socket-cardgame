@@ -1,3 +1,6 @@
+#gameboard {
+  display: none;
+}
 .cards-fisrt-user {
   display: flex;
   justify-content: center;

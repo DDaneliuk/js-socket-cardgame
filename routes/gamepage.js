@@ -5,7 +5,7 @@ const gameController = require("../controllers/game");
 router.get("/", (req, res) => {
   res.render("gamepage", {
     title: "Home",
-    readyState: false,
+    readyState: true,
     gameTemplate: true,
   });
 });

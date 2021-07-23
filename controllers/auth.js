@@ -34,12 +34,21 @@ exports.login = (req, res) => {
   if (email && password) {
     User.getUser(email, async function (err, result) {
       if (err) console.log(err);
-      console.log(result[0].password);
-      if ( !result || !bcrypt.compare(password, result[0].password) ) {
+
+      if ( !result || !result[0] ) {
         return res.render("login", {
           message: `Sorry, your password or email is incorrect. Please try again`,
         });
       } else {
+        const passCorrect = await bcrypt.compare(password, result[0].password)
+        if(!passCorrect) {
+          return res.render("login", {
+            message: `Sorry, your password or email is incorrect. Please try again`,
+          });
+        }
+        
+        res.cookie('userName', result[0].login);
+        res.cookie('email', result[0].email);
         return res.redirect("gamepage");
       }
     });

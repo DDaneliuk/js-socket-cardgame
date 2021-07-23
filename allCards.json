@@ -1,0 +1,142 @@
+[{
+  "id": 1,
+  "name":"Warrior Hasbro",
+  "damage":"40",
+  "cost":"70",
+  "defence":"20",
+  "img":"../images/card1.jpg"
+},{
+  "id": 2,
+  "name":"The Demon Seed",
+  "damage":"55",
+  "cost":"85",
+  "defence":"30",
+  "img":"../images/card2.jpg"
+},{
+  "id": 3,
+  "name":"Feast of Souls",
+  "damage":"45",
+  "cost":"75",
+  "defence":"15",
+  "img":"../images/card3.jpg"
+},{
+  "id": 4,
+  "name":"Felsaber",
+  "damage":"60",
+  "cost":"80",
+  "defence":"20",
+  "img":"../images/card4.jpg"
+},{
+  "id": 5,
+  "name":"Chaos Nova",
+  "damage":"20",
+  "cost":"30",
+  "defence":"5",
+  "img":"../images/card5.jpg"
+},{
+  "id": 6,
+  "name":"Vengeful Spirit",
+  "damage":"80",
+  "cost":"75",
+  "defence":"35",
+  "img":"../images/card6.jpg"
+},{
+  "id": 7,
+  "name":"Fury",
+  "damage":"15",
+  "cost":"65",
+  "defence":"5",
+  "img":"../images/card7.jpg"
+},{
+  "id": 8,
+  "name":"RazorBoar",
+  "damage":"50",
+  "cost":"60",
+  "defence":"20",
+  "img":"../images/card8.jpg"
+},{
+  "id": 9,
+  "name":"Vile Call",
+  "damage":"80",
+  "cost":"85",
+  "defence":"30",
+  "img":"../images/card9.jpg"
+},{
+  "id": 10,
+  "name":"Felrattler",
+  "damage":"15",
+  "cost":"20",
+  "defence":"1",
+  "img":"../images/card10.jpg"
+},{
+  "id": 11,
+  "name":"Twin Slice",
+  "damage":"35",
+  "cost":"25",
+  "defence":"5",
+  "img":"../images/card11.jpg"
+},{
+  "id": 12,
+  "name":"Feast of Soul",
+  "damage":"40",
+  "cost":"50",
+  "defence":"10",
+  "img":"../images/card12.jpg"
+},{
+  "id": 13,
+  "name":"Consume Magic",
+  "damage":"20",
+  "cost":"15",
+  "defence":"5",
+  "img":"../images/card13.jpg"
+},{
+  "id": 14,
+  "name":"Naga",
+  "damage":"20",
+  "cost":"10",
+  "defence":"1",
+  "img":"../images/card14.jpg"
+},{
+  "id": 15,
+  "name":"Spectral Sight",
+  "damage":"40",
+  "cost":"35",
+  "defence":"10",
+  "img":"../images/card15.jpg"
+},{
+  "id": 16,
+  "name":"Warlord",
+  "damage":"40",
+  "cost":"35",
+  "defence":"10",
+  "img":"../images/card16.jpg"
+},{
+  "id": 17,
+  "name":"Blur",
+  "damage":"45",
+  "cost":"40",
+  "defence":"15",
+  "img":"../images/card17.jpg"
+},{
+  "id": 18,
+  "name":"Blade",
+  "damage":"50",
+  "cost":"30",
+  "defence":"5",
+  "img":"../images/card18.jpg"
+},{
+  "id": 19,
+  "name":"Split",
+  "damage":"15",
+  "cost":"10",
+  "defence":"0",
+  "img":"../images/card19.jpg"
+},{
+  "id": 20,
+  "name":"Demon",
+  "damage":"50",
+  "cost":"70",
+  "defence":"10",
+  "img":"../images/card20.jpg"
+}
+]
